@@ -1,7 +1,9 @@
 package Board.service;
 
+import Board.dto.request.SignInDto;
 import Board.dto.request.SignUpDto;
 import Board.dto.response.ResponseDto;
+import Board.dto.response.user.SignInResponseDto;
 import Board.entity.User;
 import Board.repository.UserRepository;
 
@@ -38,6 +40,30 @@ public class UserService {
 		
 	}
 	
+	
+	public ResponseDto<SignInResponseDto> userSignIn(SignInDto signInDto){
+		
+		
+		SignInResponseDto data = null;
+		String email = signInDto.getEmail();
+		String password = signInDto.getPassword();
+		
+		User user = userRepository.findByEmail(email);
+		
+		if(user == null) {
+			return new ResponseDto<SignInResponseDto>(false, "로그인실패", null);
+					
+		}
+		
+		if(!password.equals(user.getPassword())) {
+			return new ResponseDto<SignInResponseDto>(false, "로그인실패", null);
+		}
+		
+		data = new SignInResponseDto(user);
+		
+		return new ResponseDto(true, "로그인성공", data);
+		
+	}
 	
 	
 	

@@ -3,6 +3,7 @@ package Board;
 import java.util.Scanner;
 
 import Board.controller.UserController;
+import Board.dto.request.SignInDto;
 import Board.dto.request.SignUpDto;
 
 
@@ -54,7 +55,17 @@ public class BoardApplication {
 				userController.signUp(signUpDto);
 			
 				
+			}else if(endPoint.equals(SIGN_IN)) {
 				
+				SignInDto signInDto = new SignInDto();
+				
+				System.out.println("이메일: ");
+				signInDto.setEmail(scanner.nextLine());
+				
+				System.out.println("비밀번호 : ");
+				signInDto.setPassword(scanner.nextLine());
+				
+				userController.signIn(signInDto);
 			}
 			
 			

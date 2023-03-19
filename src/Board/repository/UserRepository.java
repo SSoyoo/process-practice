@@ -3,6 +3,7 @@ package Board.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import Board.dto.request.SignInDto;
 import Board.dto.request.SignUpDto;
 import Board.entity.User;
 
@@ -30,5 +31,18 @@ public class UserRepository {
 		return user;
 	}
 	
+	public User findByEmail(String email) {
+		
+		User user = null;
+		
+		for(User item : userTable) {
+			if(item.getEmail().equals(email)){
+				user = item;
+				break;
+			}
+					
+		}
+		return user;
+	}
 	
 }
