@@ -51,7 +51,7 @@ public class BoardApplication {
 				
 				System.out.println(signUpDto);
 				
-				userController.vaildData(signUpDto);
+				userController.signUp(signUpDto);
 			
 				
 				
